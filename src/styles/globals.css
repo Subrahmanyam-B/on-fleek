@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'Gotham Pro', sans-serif;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src:url('../../public/font/GothamPro.woff2') format('woff2'),
+      url('../../public/font/GothamPro.woff') format('woff'),
+      url('../../public/font/GothamPro.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: local('Gotham Pro Bold'), local('Gotham-Pro-Bold'),
+      url('../../public/font/GothamPro-Bold.woff2') format('woff2'),
+      url('../../public/font/GothamPro-Bold.woff') format('woff'),
+      url('../../public/font/GothamPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: local('Gotham Pro Light'), local('Gotham-Pro-Light'),
+      url('../../public/font/GothamPro-Light.woff2') format('woff2'),
+      url('../../public/font/GothamPro-Light.woff') format('woff'),
+      url('../../public/font/GothamPro-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: light;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: local('Gotham Pro Medium'), local('Gotham-Pro-Medium'),
+      url('../../public/font/GothamPro-Medium.woff2') format('woff2'),
+      url('../../public/font/GothamPro-Medium.woff') format('woff'),
+      url('../../public/font/GothamPro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: medium;
+}
