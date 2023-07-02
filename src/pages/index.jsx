@@ -4,27 +4,52 @@ import Hero from "/public/assets/hero.svg";
 import Categories from "@/components/Categories";
 import Testimonials from "@/components/Testimonials";
 
-
-export default function Home() {
+export default function Home({data}) {
   return (
-    <main className="text-white px-7 lg:px-20">
+    <main className="text-white px-7 lg:px-20 overflow-x-hidden">
       <div className="relative text-white bg-black h-[21rem] lg:h-[40rem]">
-        <div className="flex justify-center absolute w-full">
-          <Image src={Hero} alt="hero" className="h-[20rem] w-[15rem] lg:h-[40rem] lg:w-auto" />
+        <div className="flex justify-center absolute w-full bg-transparent">
+          <Image
+            src={Hero}
+            alt="hero"
+            className="h-[20rem] w-[15rem] lg:h-[40rem] lg:w-auto"
+          />
+          {/* <Testimonials/> */}
         </div>
-        <div className="h-[20rem] lg:h-[40rem] flex flex-col justify-center items-center absolute w-full gap-2 lg:gap-6">
-          <div className="text-[1.25rem] font-bold tracking-widest lg:text-7xl">Fashion Made Effortless</div>
-          <div className="text-xs lg:text-xl font-light text-center leading-tight px-6 max-w-[50rem] text-[#ffffff80]">Lorem ipsum dolor sit amet, consectetur adipiscing consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </div>
-          <button className="uppercase bg-primary px-7 py-3 mt-3 lg:mt-6 lg:px-10 lg:py-5">Shop Now</button>
+        <div className="h-[20rem] lg:h-[40rem] flex flex-col justify-center items-center absolute w-full gap-2 lg:gap-6 ">
+          <div className="text-[1.25rem] font-bold tracking-widest lg:text-7xl">
+            Fashion Made Effortless
+          </div>
+          <div className="text-xs lg:text-xl font-light text-center leading-tight px-6 max-w-[50rem] text-[#ffffff80]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          </div>
+          <button className="uppercase bg-primary px-7 py-3 mt-3 lg:mt-6 lg:px-10 lg:py-5">
+            Shop Now
+          </button>
         </div>
       </div>
       <div>
-        <Categories/>
-        <Categories/>
-        <Categories/>
-        <Categories/>
+        <Categories />
+        <Categories />
+        <Categories />
+        <Categories />
       </div>
-      <Testimonials/>
+      <Testimonials />
     </main>
   );
 }
+
+export const getServersideProps = async () => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/items/section?fields=*,products.product_id.*`
+  );
+
+  const data = await res.json();
+
+  return {
+    props: {
+      data: data,
+    },
+  };
+};
