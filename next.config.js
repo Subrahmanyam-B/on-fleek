@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: { esmExternals: true },
-}
+  images: { domains: ["onfleek.agpro.co.in"] },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
