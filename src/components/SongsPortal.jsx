@@ -18,14 +18,13 @@ const SongsPortal = ({ isOpen, setOpen, artist }) => {
   }, [activeSong]);
 
   useEffect(() => {
-    if (isPlaying) {
+    if (isPlaying && activeSong) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, activeSong]);
 
-  console.log(artist);
   return (
     <>
       <audio ref={audioRef} className="hidden"></audio>
@@ -101,12 +100,16 @@ const SongsPortal = ({ isOpen, setOpen, artist }) => {
                       activeSong?.id === song?.id && "text-orange-500"
                     }`}
                     onClick={() => {
-                      if (!isPlaying) {
+                      if (activeSong && activeSong?.id !== song?.id) {
                         setActiveSong(song);
-                        setIsPlaying(true);
                       } else {
-                        setActiveSong(null);
-                        setIsPlaying(false);
+                        if (!isPlaying) {
+                          setActiveSong(song);
+                          setIsPlaying(true);
+                        } else {
+                          setActiveSong(null);
+                          setIsPlaying(false);
+                        }
                       }
                     }}
                   >
