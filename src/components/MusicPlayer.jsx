@@ -3,7 +3,7 @@ import Pause from "/public/assets/pause.svg";
 import Play from "/public/assets/play.svg";
 
 import { useEffect, useRef, useState } from "react";
-import { getAssetsURl } from "@/lib";
+import { getAssetsURl } from "@/utils/lib";
 
 const MusicPlayer = ({ active, setOpen, data }) => {
   const audioRef = useRef(null);
@@ -41,7 +41,7 @@ const MusicPlayer = ({ active, setOpen, data }) => {
   return (
     <>
       <div
-        className="music-player bg-white/20 p-2 rounded-lg w-max z-50 absolute md:right-5 md:top-5 top-0 md:left-auto left-1/2 md:-translate-x-0 -translate-x-1/2 cursor-pointer"
+        className="music-player bg-[#FFFFFF29] p-2 rounded-lg w-max z-50 absolute md:right-5 md:top-5 top-0 md:left-auto left-1/2 md:-translate-x-0 -translate-x-1/2 cursor-pointer"
         onClick={(e) => {
           const el = notClickAble?.current;
           if (!el || el.contains(e.target)) {
@@ -66,7 +66,7 @@ const MusicPlayer = ({ active, setOpen, data }) => {
                 <div>{data?.title}</div>
                 <div className="w-1 h-1 bg-white/50 rounded-full" />
                 <div className="text-white/75 md:text-sm text-xs">
-                  Shape of you
+                  {data?.artists[0].artists_id?.name}
                 </div>
               </div>
               <div className="flex gap-3 items-center" ref={notClickAble}>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Product from "/public/assets/image1.png";
-import { getAssetsURl } from "@/lib";
+import { getAssetsURl } from "@/utils/lib";
 
 const ImageViewer = ({ images }) => {
   const [active, setActive] = React.useState(0);
@@ -9,7 +9,7 @@ const ImageViewer = ({ images }) => {
     <div className="relative flex w-full">
       <div className="relative lg:h-[60rem] h-[27.5rem] w-full pr-10">
         <Image
-          src={getAssetsURl(images[active].directus_files_id)}
+          src={getAssetsURl(images?.[active].directus_files_id)}
           alt="image"
           className="w-full h-full"
           fill

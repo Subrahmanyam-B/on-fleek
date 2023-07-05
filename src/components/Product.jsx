@@ -1,8 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import Cover from "/public/assets/product.svg";
 import Link from "next/link";
-import { getAssetsURl } from "@/lib";
+import { getAssetsURl } from "@/utils/lib";
 
 const Product = ({ data }) => {
   const formatter = new Intl.NumberFormat("en-US", {

@@ -13,7 +13,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 
 import { useState } from "react";
 import SongsPortal from "./SongsPortal";
-import { getAssetsURl } from "@/lib";
+import { getAssetsURl } from "@/utils/lib";
 import Link from "next/link";
 
 const Hero = ({ data }) => {
@@ -68,7 +68,11 @@ const Hero = ({ data }) => {
           ))}
         </Swiper>
       </div>
-      <SongsPortal isOpen={isPortalOpen} setOpen={setIsPortalOpen} />
+      <SongsPortal
+        isOpen={isPortalOpen}
+        setOpen={setIsPortalOpen}
+        artist={data?.[active]?.song?.artists?.[0]?.artists_id}
+      />
     </>
   );
 };

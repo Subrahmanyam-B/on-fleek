@@ -1,6 +1,6 @@
 import Categories from "@/components/Categories";
 import ImageViewer from "@/components/ImageViewer";
-import { getFetcchURL } from "@/lib";
+import { client } from "@/utils/axios";
 import React, { useEffect } from "react";
 
 const Index = ({ data, sectionData }) => {
@@ -24,11 +24,11 @@ const Index = ({ data, sectionData }) => {
           <ImageViewer images={data?.images} />
         </div>
         <div className="lg:px-20">
-          <div className="mb-5 text-sm text-white/50">
+          {/* <div className="mb-5 text-sm text-white/50">
             <span className="underline underline-offset-8">Main page </span> /{" "}
             <span className="underline underline-offset-8">Catalog</span> /{" "}
             <span className="underline underline-offset-8">Coat & Jackets</span>
-          </div>
+          </div> */}
           <div className="font-bold ">
             <div className="tracking-widest">{data?.title}</div>
             <div className="py-4">{formatter.format(data?.price)}</div>
@@ -53,39 +53,45 @@ const Index = ({ data, sectionData }) => {
         </div>
       </div>
       <div>
-        <Categories data={sectionData} />
+        {sectionData?.map((item, i) => (
+          <Categories key={i} data={item} />
+        ))}
       </div>
     </div>
   );
 };
 
 export async function getServerSideProps({ params }) {
-  const { id } = params;
+  try {
+    const { id } = params;
 
-  const sectionIdRes = await fetch(
-    getFetcchURL(
-      `/items/section?fields=*,products.product_id.*,products.product_id.images.*&deep[products][_filter][product_id][_eq]=${id}`
-    )
-  );
+    const { data: products } = await client.get(
+      `/items/product/${id}?fields=*,images.*,sections.*,sections.section_id.*`
+    );
 
-  const sectionIdData = await sectionIdRes.json();
+    const sections = products.data.sections.map((item) => item.section_id.id);
 
-  const sectionID = sectionIdData.data[0].id;
+    console.log(sections.join(","));
 
-  const sectionRes = await fetch(
-    getFetcchURL(
-      `/items/section/${sectionID}?fields=*,products.product_id.*,products.product_id.images.*&deep[products][_filter][product_id][_neq]=${id}`
-    )
-  );
+    const { data: sectionData } = await client.get(`/items/section`, {
+      params: {
+        fields: "*,products.product_id.*,products.product_id.images.*",
+        "filter[id][_in]": sections.join(","),
+        "deep[products][_filter][product_id][_neq]": id,
+        "deep[products][_limit]": 4,
+      },
+    });
 
-  const data = sectionIdData.data[0].products[0].product_id;
-  const sectionData = await sectionRes.json();
-  return {
-    props: {
-      data: data,
-      sectionData: sectionData.data,
-    },
-  };
+    return {
+      props: {
+        data: products.data,
+        sectionData: sectionData.data,
+      },
+    };
+  } catch (e) {
+    console.log(e.response.data);
+    return { props: {} };
+  }
 }
 
 export default Index;

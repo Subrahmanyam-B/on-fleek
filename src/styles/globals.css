@@ -61,6 +61,7 @@ input[type="range"]::-webkit-slider-thumb {
   .song:first-child > * {
     @apply border-none;
   }
+
   .songs-list > * > div:not(:first-child) {
     @apply border-t-2;
   }
