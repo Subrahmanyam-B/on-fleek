@@ -2,9 +2,12 @@ import Categories from "@/components/Categories";
 import ImageViewer from "@/components/ImageViewer";
 import { client } from "@/utils/axios";
 import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Index = ({ data, sectionData }) => {
   const [content, setContent] = React.useState();
+
+  const router = useRouter();
 
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -47,7 +50,10 @@ const Index = ({ data, sectionData }) => {
               <div className="text-xs" dangerouslySetInnerHTML={content}></div>
             </div>
           </div>
-          <button className="bg-primary text-center py-4 w-full mt-9 font-medium">
+          <button
+            className="bg-primary text-center py-4 w-full mt-9 font-medium"
+            onClick={() => router.push(process.env.NEXT_PUBLIC_REDIRECT_URL)}
+          >
             Buy Now
           </button>
         </div>
