@@ -6,10 +6,10 @@ import Link from "next/link";
 const Categories = ({ data }) => {
   return (
     <div>
-      <div className="uppercase text-sm font-medium flex justify-between mb-6 lg:mb-12">
-        <div className="lg:text-3xl">{data?.title}</div>
+      <div className="uppercase text-sm flex justify-between mb-6 lg:mb-12">
+        <div className="lg:text-lg">{data?.title}</div>
         <Link
-          className="flex text-primary gap-2 lg:text-2xl items-center"
+          className="flex text-primary gap-2 lg:text-lg items-center"
           href={`/section/${data?.id}`}
         >
           View More

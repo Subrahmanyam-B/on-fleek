@@ -66,3 +66,47 @@ input[type="range"]::-webkit-slider-thumb {
     @apply border-t-2;
   }
 }
+
+:root {
+  --orange-color: #ff5f15;
+}
+
+.border-animation {
+  --border-size: 3px;
+  --border-angle: 0turn;
+
+  background-image: conic-gradient(
+      from var(--border-angle),
+      var(--orange-color),
+      var(--orange-color) 50%,
+      var(--orange-color)
+    ),
+    conic-gradient(
+      from var(--border-angle),
+      transparent 20%,
+      var(--orange-color),
+      var(--orange-color)
+    );
+  background-size: calc(100% - (var(--border-size) * 2))
+      calc(100% - (var(--border-size) * 2)),
+    cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  animation: bg-spin 3s linear infinite;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+&:hover {
+  animation-play-state: paused;
+}

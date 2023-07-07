@@ -17,6 +17,11 @@ export default function SearchPortal({ isOpen, handleClose }) {
 
   const router = useRouter();
 
+  const close = () => {
+    handleClose();
+    setSearch("");
+  };
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -37,7 +42,7 @@ export default function SearchPortal({ isOpen, handleClose }) {
   }, [debounceValue]);
 
   useEffect(() => {
-    handleClose();
+    close();
   }, [router]);
 
   return (
@@ -73,8 +78,7 @@ export default function SearchPortal({ isOpen, handleClose }) {
               height={20}
               className="h-5 w-5 cursor-pointer"
               onClick={() => {
-                handleClose();
-                setSearch("");
+                close();
               }}
             />
           </div>

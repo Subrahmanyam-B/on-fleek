@@ -8,9 +8,9 @@ import Whatsapp from "/public/assets/whatsapp.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#141414]">
+    <footer className="bg-[#141414] h-full min-h-[510px]">
       <div className="text-white relative bg-transparent md:hidden">
-        <div className="w-full absolute -z-50">
+        <div className="w-full absolute ">
           <Image src={FooterBackground} className="w-full" alt="" />
         </div>
         <div className="absolute w-full flex flex-col items-center justify-center pt-20 px-10">

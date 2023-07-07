@@ -124,7 +124,7 @@ const SongsPortal = ({ isOpen, setOpen, artist }) => {
                             className="absolute w-full h-full object-cover rounded-xl z-0"
                           />
                         </div>
-                        <div>{song.title}</div>
+                        <div className="truncate">{song.title}</div>
                       </div>
                       <div className="flex gap-2 items-center">
                         <Image

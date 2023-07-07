@@ -85,7 +85,6 @@ const MusicPlayer = ({ active, setOpen, data }) => {
                     max={duration}
                     value={currentTime}
                     onChange={(e) => {
-                      console.log(e.target.value);
                       audioRef.current.currentTime = e.target.value;
                     }}
                   />

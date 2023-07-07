@@ -39,7 +39,7 @@ const Navbar = () => {
               <button className="uppercase">About Us</button>
             </div>
             <div className="flex gap-8">
-              <button onClick={() => setIsOpen(!isOpen)}>
+              <button onClick={() => setIsSearchOpen(!isSearchOpen)}>
                 <Image src={Search} alt="" />
               </button>
               <button>
