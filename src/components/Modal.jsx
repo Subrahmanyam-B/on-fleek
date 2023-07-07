@@ -11,6 +11,14 @@ const Modal = ({ children, isOpen, handleClose, title, modalSize }) => {
     };
   }, [handleClose]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
+
   const modalSizeClass = modalSize === "large" ? "lg:w-1/2" : "lg:w-1/2";
 
   if (!isOpen) return null;

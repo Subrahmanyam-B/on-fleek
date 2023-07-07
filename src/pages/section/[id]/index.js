@@ -4,7 +4,7 @@ import { client } from "@/utils/axios";
 export default function Page({ data }) {
   return (
     <>
-      <div className="w-full h-full text-white md:p-10 p-8 ">
+      <div className="w-full h-full text-white md:p-10 p-8 px-5">
         <div className="lg:text-xl uppercase text-center">{data?.title}</div>
         <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-5 mt-5">
           {data ? (

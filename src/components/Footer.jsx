@@ -8,12 +8,10 @@ import Whatsapp from "/public/assets/whatsapp.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#141414] h-full min-h-[510px]">
+    <footer className="bg-[#141414] h-full ">
       <div className="text-white relative bg-transparent md:hidden">
-        <div className="w-full absolute ">
-          <Image src={FooterBackground} className="w-full" alt="" />
-        </div>
-        <div className="absolute w-full flex flex-col items-center justify-center pt-20 px-10">
+        <Image src={FooterBackground} className="w-full" alt="" fill />
+        <div className="relative z-10 w-full flex flex-col items-center justify-center pt-20 px-10">
           <Image src={Logo} alt="" />
           <div className="mt-20">
             <div className="uppercase grid grid-cols-3 gap-x-5 text-sm gap-y-5">
@@ -26,7 +24,7 @@ const Footer = () => {
           <div className="w-full h-full mt-10">
             <div className="h-0.5 bg-white w-full" />
           </div>
-          <div className="uppercase flex justify-between w-full mt-20 text-sm">
+          <div className="uppercase flex justify-between w-full my-20 text-sm">
             <div>Privacy Policy</div>
             <div>/</div>
             <div>Term of use</div>

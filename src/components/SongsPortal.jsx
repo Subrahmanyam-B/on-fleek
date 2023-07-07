@@ -90,7 +90,7 @@ const SongsPortal = ({ isOpen, setOpen, artist }) => {
           </div>
           <div className="w-full pt-5 space-y-1">
             <div>Popular</div>
-            <div className="songs-list w-full">
+            <div className="songs-list overflow-auto w-full">
               {artist?.songs?.map((item, i) => {
                 const { song_id: song } = item;
                 return (

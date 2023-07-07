@@ -1,5 +1,4 @@
 import Image from "next/image";
-import HeroImage from "/public/assets/hero.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, A11y } from "swiper";
 
@@ -33,22 +32,30 @@ const Hero = ({ data }) => {
         >
           {data?.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="relative text-white bg-black h-[21rem] lg:h-[40rem]">
-                <div className="flex justify-center absolute w-full bg-transparent">
-                  <Image
+              <div className="relative text-white bg-black h-[30rem] lg:h-[40rem]">
+                <div className="flex justify-center absolute w-full bg-transparent h-full">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={getAssetsURl(item?.media)}
+                      alt="hero"
+                      fill
+                      className="w-full h-full object-cover opacity-20"
+                    />
+                  </div>
+                  {/* <Image
                     src={getAssetsURl(item?.media)}
                     alt="hero"
                     className="h-[20rem] w-[15rem] lg:h-[40rem] lg:w-auto"
                     width={240}
                     height={350}
-                  />
+                  /> */}
                   {/* <Testimonials/> */}
                 </div>
-                <div className="h-[20rem] lg:h-[40rem] flex flex-col justify-center items-center absolute w-full gap-2 lg:gap-6 ">
-                  <div className="text-[1.25rem] font-bold tracking-widest lg:text-7xl">
+                <div className="h-full  flex flex-col justify-center items-center absolute w-full gap-2 lg:gap-6 ">
+                  <div className="text-[1.25rem] font-bold tracking-widest lg:text-3xl">
                     {item?.headline}
                   </div>
-                  <div className="text-xs lg:text-xl font-light text-center leading-tight px-6 max-w-[50rem] text-[#ffffff80]">
+                  <div className="text-xs lg:text-base font-light text-center leading-tight px-6 max-w-[50rem] text-[#ffffff80]">
                     {item?.body}
                   </div>
                   <Link
@@ -61,6 +68,7 @@ const Hero = ({ data }) => {
                 <MusicPlayer
                   active={active === index}
                   setOpen={setIsPortalOpen}
+                  open={isPortalOpen}
                   data={item?.song}
                 />
               </div>

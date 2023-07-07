@@ -18,16 +18,14 @@ const Testimonials = () => {
 
   const [active, setActive] = useState(0);
 
-  useEffect(() => {
-    setActive(swiper?.activeIndex);
-  }, [swiper]);
+  console.log(swiper?.params?.slidesPerView);
 
   return (
-    <div className="flex flex-col gap-6 pb-12 ">
+    <div className="flex flex-col gap-6 pb-12">
       <div className="uppercase font-medium text-center">
         OUR Happy customers
       </div>
-      <div className="w-[125%] -translate-x-[10%] xl:px-none px-10">
+      <div className="w-full ">
         <Swiper
           // install Swiper modules
           modules={[Navigation, Scrollbar, A11y]}
@@ -48,9 +46,11 @@ const Testimonials = () => {
             },
             720: { slidesPerView: 3, spaceBetween: 50 },
           }}
-          centeredSlides={true}
           onSwiper={(swiper) => setSwiper(swiper)}
-          onSlideChange={(swiper) => setActive(swiper.activeIndex)}
+          onSlideChange={(swiper) => {
+            console.log(swiper);
+            setActive(swiper.activeIndex);
+          }}
         >
           <SwiperSlide>
             {({ isActive }) => <TestimonialCard isActive={isActive} />}
@@ -70,7 +70,11 @@ const Testimonials = () => {
         <button onClick={() => swiper.slidePrev()}>
           <Image src={PrevIcon} alt="prev" className="h-5 w-5" />
         </button>
-        <CardPagination pages={4} active={active} />
+        <CardPagination
+          pages={4}
+          active={active}
+          perView={swiper?.params?.slidesPerView}
+        />
         <button onClick={() => swiper.slideNext()}>
           <Image src={NextIcon} alt="next" className="h-5 w-5" />
         </button>

@@ -5,14 +5,16 @@ import { client } from "@/utils/axios";
 
 export default function Home({ categories, banner }) {
   return (
-    <main className="text-white px-7 lg:px-20 overflow-x-hidden">
+    <main className="text-white  overflow-x-hidden h-full">
       <Hero data={banner} />
-      <div className="mt-10">
-        {categories?.map((item) => (
-          <Categories key={item.id} data={item} />
-        ))}
+      <div className="px-5 lg:px-20">
+        <div className="mt-10">
+          {categories?.map((item) => (
+            <Categories key={item.id} data={item} />
+          ))}
+        </div>
+        <Testimonials />
       </div>
-      <Testimonials />
     </main>
   );
 }

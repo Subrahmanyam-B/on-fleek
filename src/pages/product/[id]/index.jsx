@@ -59,9 +59,10 @@ const Index = ({ data, sectionData }) => {
         </div>
       </div>
       <div>
-        {sectionData?.map((item, i) => (
-          <Categories key={i} data={item} />
-        ))}
+        {sectionData?.map((item, i) => {
+          if (item.products.length <= 0) return null;
+          return <Categories key={i} data={item} />;
+        })}
       </div>
     </div>
   );
@@ -76,8 +77,6 @@ export async function getServerSideProps({ params }) {
     );
 
     const sections = products.data.sections.map((item) => item.section_id.id);
-
-    console.log(sections.join(","));
 
     const { data: sectionData } = await client.get(`/items/section`, {
       params: {
