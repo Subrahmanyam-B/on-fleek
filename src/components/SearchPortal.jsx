@@ -50,7 +50,7 @@ export default function SearchPortal({ isOpen, handleClose }) {
       <ReactPortal wrapperId="search">
         <div
           className={`fixed inset-0 bottom-auto h-full w-full ${
-            isOpen ? "top-0" : "-top-[100%]"
+            isOpen ? "block" : "hidden"
           } h-screen bg-black p-4 z-50 transition-all duration-300 ease-in-out flex flex-col gap-5`}
         >
           <div className="flex items-center rounded-lg px-1">
