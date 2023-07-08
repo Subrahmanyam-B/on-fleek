@@ -39,7 +39,7 @@ const Hero = ({ data }) => {
                       src={getAssetsURl(item?.media)}
                       alt="hero"
                       fill
-                      className="w-full h-full object-cover opacity-20"
+                      className="w-full h-full object-cover sm:object-center object-top opacity-20"
                     />
                   </div>
                   {/* <Image

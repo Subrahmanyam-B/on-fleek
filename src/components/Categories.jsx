@@ -16,7 +16,7 @@ const Categories = ({ data }) => {
           <Image src={ViewMOre} alt="" className="lg:h-5 lg:w-auto" />
         </Link>
       </div>
-      <div className="grid gap-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-12">
+      <div className="grid gap-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-12 products ">
         {data?.products.map((product, i) => (
           <Product key={i} data={product.product_id} />
         ))}

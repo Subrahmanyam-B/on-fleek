@@ -14,17 +14,17 @@ const ImageViewer = ({ images }) => {
           fill
         />
       </div>
-      <div className="flex flex-col gap-4 absolute -right-[10%] justify-center lg:h-full h-full pr-10">
+      <div className="flex flex-col gap-4 absolute -right-8 justify-center lg:h-full h-full pr-10">
         {images?.map((image, i) => (
           <button
             key={i}
-            className="w-full shadow-lg"
+            className="w-full shadow-2xl"
             onClick={() => setActive(i)}
           >
             <Image
               src={getAssetsURl(image.directus_files_id)}
               alt="image"
-              className="lg:h-[10rem] sm:h-[8rem] h-[5rem] w-full"
+              className="lg:h-[10rem] sm:h-[8rem] h-[8rem] w-full"
               width={1440}
               height={960}
             />

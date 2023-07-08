@@ -10,7 +10,7 @@ const Product = ({ data }) => {
   });
 
   return (
-    <Link href={`/product/${data?.id}`} className="flex flex-col gap-4">
+    <Link href={`/product/${data?.id}`} className="flex flex-col gap-4 product">
       <div className="relative flex justify-center w-full md:h-96 h-60">
         <Image
           src={getAssetsURl(data?.images[0].directus_files_id)}

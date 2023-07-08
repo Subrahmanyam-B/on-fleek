@@ -1,3 +1,4 @@
+import { useIsomorphicLayoutEffect } from "@/utils/useIsomorphicLayoutEffect";
 import { useState, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 
@@ -11,7 +12,7 @@ function createWrapperAndAppendToBody(wrapperId) {
 function ReactPortal({ children, wrapperId = "react-portal-wrapper" }) {
   const [wrapperElement, setWrapperElement] = useState(null);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     let element = document.getElementById(wrapperId);
     let systemCreated = false;
     // if element is not found with wrapperId or wrapperId is not provided,

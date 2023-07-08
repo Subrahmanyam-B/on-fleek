@@ -11,14 +11,12 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Image from "next/image";
 import CardPagination from "./CardPagination";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Testimonials = () => {
   const [swiper, setSwiper] = useState(null);
 
   const [active, setActive] = useState(0);
-
-  console.log(swiper?.params?.slidesPerView);
 
   return (
     <div className="flex flex-col gap-6 pb-12">

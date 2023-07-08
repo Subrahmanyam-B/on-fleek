@@ -65,16 +65,33 @@ input[type="range"]::-webkit-slider-thumb {
   .songs-list > * > div:not(:first-child) {
     @apply border-t-2;
   }
+
+  @media (min-width: 640px) {
+    .products > .product {
+      @apply flex;
+    }
+  }
+  @media (max-width: 640px) {
+    .products > .product:nth-child(3) {
+      @apply hidden;
+    }
+    .products > .product:nth-child(4) {
+      @apply hidden;
+    }
+  }
 }
 
 :root {
   --orange-color: #ff5f15;
 }
 
-.border-animation {
+:root {
+  --orange-color: #ff5f15;
   --border-size: 3px;
   --border-angle: 0turn;
+}
 
+.border-animation {
   background-image: conic-gradient(
       from var(--border-angle),
       var(--orange-color),
@@ -101,12 +118,151 @@ input[type="range"]::-webkit-slider-thumb {
   inherits: true;
   initial-value: 0turn;
 }
+
 @keyframes bg-spin {
   to {
     --border-angle: 1turn;
   }
 }
+@supports (-moz-animation: normal) {
+  .border-animation {
+    background-image: linear-gradient(black, black) !important;
+  }
+  span {
+    position: fixed;
+    border-radius: 100vmax;
+    display: block !important;
+    z-index: 30;
+  }
 
-&:hover {
-  animation-play-state: paused;
+  .top {
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+
+    background: linear-gradient(
+      90deg,
+      transparent 50%,
+      var(--orange-color),
+      var(--orange-color)
+    );
+  }
+
+  .bottom {
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--orange-color),
+      var(--orange-color),
+      transparent 50%
+    );
+  }
+
+  .right {
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 30%,
+      var(--orange-color),
+      var(--orange-color)
+    );
+  }
+
+  .left {
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(
+      180deg,
+      var(--orange-color),
+      var(--orange-color),
+      transparent 70%
+    );
+  }
+
+  .top {
+    animation: animateTop 3s ease-in-out infinite;
+  }
+
+  .bottom {
+    animation: animateBottom 3s ease-in-out infinite;
+  }
+
+  .right {
+    animation: animateRight 3s ease-in-out infinite;
+  }
+
+  .left {
+    animation: animateLeft 3s ease-in-out infinite;
+  }
+
+  @keyframes animateTop {
+    25% {
+      width: 100%;
+      opacity: 1;
+    }
+
+    30%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes animateBottom {
+    0%,
+    50% {
+      opacity: 0;
+      width: 0;
+    }
+
+    75% {
+      opacity: 1;
+      width: 100%;
+    }
+
+    76%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes animateRight {
+    0%,
+    25% {
+      opacity: 0;
+      height: 0;
+    }
+
+    50% {
+      opacity: 1;
+      height: 100%;
+    }
+
+    55%,
+    100% {
+      height: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes animateLeft {
+    0%,
+    75% {
+      opacity: 0;
+      bottom: 0;
+      height: 0;
+    }
+
+    100% {
+      opacity: 1;
+      height: 100%;
+    }
+  }
 }
