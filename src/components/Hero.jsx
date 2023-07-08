@@ -32,7 +32,7 @@ const Hero = ({ data }) => {
         >
           {data?.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="relative text-white bg-black h-[30rem] lg:h-[40rem]">
+              <div className="relative text-white bg-black h-[40rem] lg:h-[40rem]">
                 <div className="flex justify-center absolute w-full bg-transparent h-full">
                   <div className="relative w-full h-full">
                     <Image

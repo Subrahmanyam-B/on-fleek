@@ -2,14 +2,15 @@ import Image from "next/image";
 import ViewMOre from "/public/assets/arrow-right.svg";
 import Product from "./Product";
 import Link from "next/link";
+import { forwardRef } from "react";
 
-const Categories = ({ data }) => {
+const Categories = forwardRef(({ data }, ref) => {
   return (
-    <div>
-      <div className="uppercase text-sm flex justify-between mb-6">
-        <div className="lg:text-lg">{data?.title}</div>
+    <div ref={ref}>
+      <div className=" text-sm flex justify-between mb-6">
+        <div className="lg:text-lg uppercase">{data?.title}</div>
         <Link
-          className="flex text-primary gap-2 lg:text-lg items-center"
+          className="flex text-primary gap-2 md:text-base items-center"
           href={`/section/${data?.id}`}
         >
           View More
@@ -23,6 +24,8 @@ const Categories = ({ data }) => {
       </div>
     </div>
   );
-};
+});
+
+Categories.displayName = "Categories";
 
 export default Categories;

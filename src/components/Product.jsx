@@ -19,8 +19,8 @@ const Product = ({ data }) => {
           fill
         />
       </div>
-      <div className="text-xs lg:text-sm uppercase flex flex-col gap-2">
-        <div className=" line-clamp-2 h-8">{data?.title}</div>
+      <div className="text-xs lg:text-sm uppercase flex justify-between flex-col gap-1">
+        <div className=" line-clamp-2">{data?.title}</div>
         <div className="font-bold">{formatter.format(data?.price)}</div>
       </div>
     </Link>

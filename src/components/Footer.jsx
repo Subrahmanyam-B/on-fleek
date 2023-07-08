@@ -10,7 +10,12 @@ const Footer = () => {
   return (
     <footer className="bg-[#141414] h-full ">
       <div className="text-white relative bg-transparent md:hidden">
-        <Image src={FooterBackground} className="w-full" alt="" fill />
+        <Image
+          src={FooterBackground}
+          className="w-full object-cover"
+          alt=""
+          fill
+        />
         <div className="relative z-10 w-full flex flex-col items-center justify-center pt-20 px-10">
           <Image src={Logo} alt="" />
           <div className="mt-20">

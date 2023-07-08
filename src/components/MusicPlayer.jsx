@@ -41,7 +41,7 @@ const MusicPlayer = ({ active, setOpen, data, open }) => {
   return (
     <>
       <div
-        className="music-player bg-[#FFFFFF29] p-2 rounded-lg sm:w-max w-64  z-50 absolute md:right-5 md:top-5 top-2 md:left-auto left-1/2 md:-translate-x-0 -translate-x-1/2 cursor-pointer"
+        className="music-player bg-[#FFFFFF29] p-2 rounded-lg sm:w-72 w-64  z-50 absolute md:right-10 top-24  md:left-auto left-1/2 md:-translate-x-0 -translate-x-1/2 cursor-pointer"
         onClick={(e) => {
           e.stopPropagation();
           const el = notClickAble.current;
@@ -56,7 +56,7 @@ const MusicPlayer = ({ active, setOpen, data, open }) => {
           ref={audioRef}
           src={getAssetsURl(data?.file)}
         ></audio>
-        <div className="flex gap-3">
+        <div className="flex gap-3 w-full">
           <div className="md:w-16 md:h-16 h-14 w-14 bg-white rounded-lg relative">
             <Image
               src={getAssetsURl(data?.cover)}
@@ -82,7 +82,7 @@ const MusicPlayer = ({ active, setOpen, data, open }) => {
                   <Image
                     src={isPlaying ? Pause : Play}
                     alt="pause"
-                    className="md:w-5 md:h-5 h-4 w-4"
+                    className="md:w-6 md:h-6 h-4 w-4"
                   />
                 </button>
                 <div className="flex-1 h-1 w-full grid place-items-center">

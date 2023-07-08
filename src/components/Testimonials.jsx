@@ -33,18 +33,23 @@ const Testimonials = () => {
             320: {
               slidesPerView: 1,
               spaceBetween: 20,
+              initialSlide: 0,
             },
             480: {
               slidesPerView: 2,
               spaceBetween: 40,
+              initialSlide: 0,
             },
             640: {
               slidesPerView: 2,
               spaceBetween: 50,
+              initialSlide: 1,
             },
-            720: { slidesPerView: 3, spaceBetween: 50 },
+            720: { slidesPerView: 3, spaceBetween: 50, initialSlide: 1 },
           }}
           onSwiper={(swiper) => setSwiper(swiper)}
+          initialSlide={1}
+          centeredSlides={true}
           onSlideChange={(swiper) => {
             console.log(swiper);
             setActive(swiper.activeIndex);

@@ -21,7 +21,7 @@ const Index = ({ data, sectionData }) => {
   }, [data?.summary]);
 
   return (
-    <div className="text-white px-8">
+    <div className="text-white px-8 mt-20">
       <div className="pt-10 pb-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="flex">
           <ImageViewer images={data?.images} />
@@ -33,17 +33,17 @@ const Index = ({ data, sectionData }) => {
             <span className="underline underline-offset-8">Coat & Jackets</span>
           </div> */}
           <div className="font-bold ">
-            <div className="tracking-widest">{data?.title}</div>
+            <div className="tracking-widest md:text-xl">{data?.title}</div>
             <div className="py-4">{formatter.format(data?.price)}</div>
           </div>
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-3">
+          <div className="flex md:flex-row flex-col gap-6">
+            <div className="flex flex-col w-1/2 gap-3">
               <div className="text-sm uppercase font-medium text-[#ffffff40] tracking-widest">
                 description
               </div>
               <div className="text-xs">{data?.description}</div>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 w-1/2">
               <div className="text-sm uppercase font-medium text-[#ffffff40] tracking-widest">
                 summary
               </div>
@@ -94,7 +94,6 @@ export async function getServerSideProps({ params }) {
       },
     };
   } catch (e) {
-    console.log(e.response.data);
     return { props: {} };
   }
 }

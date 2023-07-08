@@ -6,7 +6,7 @@ const ImageViewer = ({ images }) => {
   const [active, setActive] = React.useState(0);
   return (
     <div className="relative flex w-full h-max">
-      <div className="relative lg:h-[45rem] h-[27.5rem] w-full pr-10">
+      <div className="relative lg:h-[40rem] h-[25rem] w-full pr-10">
         <Image
           src={getAssetsURl(images?.[active].directus_files_id)}
           alt="image"

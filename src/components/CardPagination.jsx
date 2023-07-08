@@ -3,7 +3,7 @@ import React from "react";
 const CardPagination = ({ pages, active, perView }) => {
   const renderPages = () => {
     let pagesArray = [];
-    for (let i = 0; i < pages / perView; i++) {
+    for (let i = 0; i < pages; i++) {
       pagesArray.push(
         <button
           className={`w-[10px] h-[10px] rounded-full ${
