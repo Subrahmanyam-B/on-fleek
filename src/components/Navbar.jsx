@@ -7,10 +7,18 @@ import CartIcon from "/public/assets/shopping-cart.svg";
 import SearchPortal from "./SearchPortal";
 import Link from "next/link";
 import Close from "/public/assets/close.svg";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [router]);
 
   return (
     <div className="absolute left-0 top-0 z-10 w-full p-[3px]">
@@ -64,9 +72,13 @@ const Navbar = () => {
               isOpen ? "left-0" : "left-[-100%]"
             } h-full w-full grid place-items-center`}
           >
-            <div className="flex flex-col gap-5 text-xl">
-              <button className="uppercase">Home</button>
-              <button className="uppercase">About Us</button>
+            <div className="flex flex-col gap-5 text-xl text-center">
+              <Link href={"/"} className="uppercase">
+                Home
+              </Link>
+              <Link href={"/about"} className="uppercase">
+                About Us
+              </Link>
             </div>
             <button className="absolute right-5 top-5">
               <Image
