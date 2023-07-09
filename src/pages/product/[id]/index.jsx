@@ -52,7 +52,7 @@ const Index = ({ data, sectionData }) => {
           </div>
           <button
             className="bg-primary text-center py-4 w-full mt-9 font-medium"
-            onClick={() => router.push(process.env.NEXT_PUBLIC_REDIRECT_URL)}
+            onClick={() => router.push(data.buynow)}
           >
             Buy Now
           </button>
