@@ -58,7 +58,7 @@ const Pagination = ({ count, limit, offset }) => {
   );
 };
 
-const limit = 2;
+const limit = 10;
 
 export default function Page({ data, products, count }) {
   const router = useRouter();

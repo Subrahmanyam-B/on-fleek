@@ -36,8 +36,12 @@ const Navbar = () => {
             </Link>
             <div className="flex gap-20">
               <div className="flex gap-12 ">
-                <button className="uppercase">Home</button>
-                <button className="uppercase">About Us</button>
+                <Link href={"/"} className="uppercase">
+                  Home
+                </Link>
+                <Link href={"/about"} className="uppercase">
+                  About Us
+                </Link>
               </div>
               <div className="flex gap-8">
                 <button onClick={() => setIsSearchOpen(!isSearchOpen)}>
