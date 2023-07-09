@@ -37,13 +37,13 @@ const Index = ({ data, sectionData }) => {
             <div className="py-4">{formatter.format(data?.price)}</div>
           </div>
           <div className="flex md:flex-row flex-col gap-6">
-            <div className="flex flex-col w-1/2 gap-3">
+            <div className="flex flex-col md:w-1/2 w-full gap-3">
               <div className="text-sm uppercase font-medium text-[#ffffff40] tracking-widest">
                 description
               </div>
               <div className="text-xs">{data?.description}</div>
             </div>
-            <div className="flex flex-col gap-3 w-1/2">
+            <div className="flex flex-col gap-3 md:w-1/2 w-full">
               <div className="text-sm uppercase font-medium text-[#ffffff40] tracking-widest">
                 summary
               </div>
