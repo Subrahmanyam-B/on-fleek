@@ -7,7 +7,7 @@ export default function Home() {
         <div className="text-primary uppercase text-center text-xl">
           About Us
         </div>
-        <div className="md:px-52 px-5 pb-10">
+        <div className="xl:px-52 md:px-32 sm:px-10 px-5 pb-10">
           Our e-commerce site is more than just an online store. It&apos;s a
           fashion destination that combines convenience, variety, and
           exceptional customer service. We strive to provide a memorable
@@ -17,9 +17,16 @@ export default function Home() {
         </div>
         <div className="flex">
           <div className="w-full flex flex-col items-center gap-5">
-            <div className="bg-white/30 rounded-full w-28 h-28"></div>
+            <div className="bg-white/30 rounded-full w-28 h-28 relative">
+              <Image
+                src={"/assets/founder.jpeg"}
+                fill
+                alt="founder image"
+                className="rounded-full object-cover"
+              />
+            </div>
             <div className="space-y-0.5 text-center text-sm">
-              <div className="text-base">Shaik Zeeshan</div>
+              <div className="text-base">Stalin</div>
               <div>Founder</div>
             </div>
           </div>

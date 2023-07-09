@@ -85,7 +85,7 @@ input[type="range"]::-webkit-slider-thumb {
   --orange-color: #ff5f15;
 }
 
-:root {
+/* :root {
   --orange-color: #ff5f15;
   --border-size: 3px;
   --border-angle: 0turn;
@@ -109,7 +109,6 @@ input[type="range"]::-webkit-slider-thumb {
     cover;
   background-position: center center;
   background-repeat: no-repeat;
-
   animation: bg-spin 3s linear infinite;
 }
 
@@ -120,11 +119,14 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 @keyframes bg-spin {
+  from {
+    --border-angle: 0turn;
+  }
   to {
     --border-angle: 1turn;
   }
-}
-@supports (-moz-animation: normal) {
+} */
+@supports (animation: normal) {
   .border-animation {
     background-image: linear-gradient(black, black) !important;
   }
@@ -188,19 +190,19 @@ input[type="range"]::-webkit-slider-thumb {
   }
 
   .top {
-    animation: animateTop 3s ease-in-out infinite;
+    animation: animateTop 10s ease-in-out infinite;
   }
 
   .bottom {
-    animation: animateBottom 3s ease-in-out infinite;
+    animation: animateBottom 10s ease-in-out infinite;
   }
 
   .right {
-    animation: animateRight 3s ease-in-out infinite;
+    animation: animateRight 10s ease-in-out infinite;
   }
 
   .left {
-    animation: animateLeft 3s ease-in-out infinite;
+    animation: animateLeft 10s ease-in-out infinite;
   }
 
   @keyframes animateTop {
