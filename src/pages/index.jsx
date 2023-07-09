@@ -53,19 +53,30 @@ export default function Home({ categories, banner, count }) {
 }
 
 export const getServerSideProps = async () => {
-  const { data: categoriesData } = await client.get(
-    `/items/section?sort=rank&fields=*,products.product_id.*,products.product_id.images.*&deep[products][_limit]=4&limit=1&meta=total_count`
-  );
+  try {
+    const { data: categoriesData } = await client.get(
+      `/items/section?sort=rank&fields=*,products.product_id.*,products.product_id.images.*&deep[products][_limit]=4&limit=1&meta=total_count`
+    );
 
-  const { data: bannerData } = await client.get(
-    "/items/banner?fields=*,song.*,song.artists.*,song.artists.artists_id.*,song.artists.artists_id.songs.*,song.artists.artists_id.songs.song_id.*,buy_now_product.*,buy_now_product.images.*"
-  );
+    const { data: bannerData } = await client.get(
+      "/items/banner?fields=*,song.*,song.artists.*,song.artists.artists_id.*,song.artists.artists_id.songs.*,song.artists.artists_id.songs.song_id.*,buy_now_product.*,buy_now_product.images.*"
+    );
 
-  return {
-    props: {
-      categories: categoriesData.data,
-      banner: bannerData.data,
-      count: categoriesData.meta.total_count,
-    },
-  };
+    return {
+      props: {
+        categories: categoriesData.data,
+        banner: bannerData.data,
+        count: categoriesData.meta.total_count,
+      },
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      props: {
+        categories: [],
+        banner: [],
+        count: 0,
+      },
+    };
+  }
 };

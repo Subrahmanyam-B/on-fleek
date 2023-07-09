@@ -94,7 +94,12 @@ export async function getServerSideProps({ params }) {
       },
     };
   } catch (e) {
-    return { props: {} };
+    return {
+      props: {
+        data: [],
+        sectionData: [],
+      },
+    };
   }
 }
 
