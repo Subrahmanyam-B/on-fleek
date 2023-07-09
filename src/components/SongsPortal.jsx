@@ -25,6 +25,15 @@ const SongsPortal = ({ isOpen, setOpen, artist }) => {
     }
   }, [isPlaying, activeSong]);
 
+  useEffect(() => {
+    audioRef.current.addEventListener("timeupdate", (e) => {
+      if (e.target.currentTime === e.target.duration) {
+        setIsPlaying(false);
+        setActiveSong("");
+      }
+    });
+  }, []);
+
   return (
     <>
       <audio ref={audioRef} className="hidden"></audio>

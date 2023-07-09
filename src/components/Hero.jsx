@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Scrollbar, A11y } from "swiper";
+import { Navigation, Scrollbar, A11y, Autoplay } from "swiper";
 
 import "swiper/swiper-bundle.css";
 import "swiper/css";
@@ -10,7 +10,7 @@ import "swiper/css/scrollbar";
 
 import MusicPlayer from "@/components/MusicPlayer";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SongsPortal from "./SongsPortal";
 import { getAssetsURl } from "@/utils/lib";
 import Link from "next/link";
@@ -22,13 +22,23 @@ const Hero = ({ data }) => {
 
   const [isPortalOpen, setIsPortalOpen] = useState(false);
 
+  useEffect(() => {
+    if (swiper) {
+      console.log(swiper);
+    }
+  }, [swiper]);
+
   return (
     <>
       <div className="w-full h-full">
         <Swiper
-          modules={[Navigation, Scrollbar, A11y]}
+          modules={[Navigation, Scrollbar, A11y, Autoplay]}
           onSwiper={(swiper) => setSwiper(swiper)}
           onSlideChange={(swiper) => setActive(swiper.activeIndex)}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
         >
           {data?.map((item, index) => (
             <SwiperSlide key={index}>

@@ -35,6 +35,9 @@ const MusicPlayer = ({ active, setOpen, data, open }) => {
   useEffect(() => {
     audioRef.current.addEventListener("timeupdate", (e) => {
       setCurrentTime(e.target.currentTime);
+      if (e.target.currentTime === e.target.duration) {
+        setIsPlaying(false);
+      }
     });
   }, []);
 

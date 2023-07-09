@@ -17,6 +17,7 @@ const Product = ({ data }) => {
           alt="cover-image"
           className="object-cover object-top"
           fill
+          quality={100}
         />
       </div>
       <div className="text-xs lg:text-sm uppercase flex justify-between flex-col gap-1">
