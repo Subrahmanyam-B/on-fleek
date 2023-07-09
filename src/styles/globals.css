@@ -3,44 +3,266 @@
 @tailwind utilities;
 
 html {
-  font-family: 'Gotham Pro', sans-serif;
+  font-family: "Gotham Pro", sans-serif;
 }
 
 @font-face {
-  font-family: 'Gotham Pro';
-  src:url('../../public/font/GothamPro.woff2') format('woff2'),
-      url('../../public/font/GothamPro.woff') format('woff'),
-      url('../../public/font/GothamPro.ttf') format('truetype');
+  font-family: "Gotham Pro";
+  src: url("../../public/font/GothamPro.woff2") format("woff2"),
+    url("../../public/font/GothamPro.woff") format("woff"),
+    url("../../public/font/GothamPro.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Gotham Pro';
-  src: local('Gotham Pro Bold'), local('Gotham-Pro-Bold'),
-      url('../../public/font/GothamPro-Bold.woff2') format('woff2'),
-      url('../../public/font/GothamPro-Bold.woff') format('woff'),
-      url('../../public/font/GothamPro-Bold.ttf') format('truetype');
+  font-family: "Gotham Pro";
+  src: local("Gotham Pro Bold"), local("Gotham-Pro-Bold"),
+    url("../../public/font/GothamPro-Bold.woff2") format("woff2"),
+    url("../../public/font/GothamPro-Bold.woff") format("woff"),
+    url("../../public/font/GothamPro-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: bold;
 }
 
 @font-face {
-  font-family: 'Gotham Pro';
-  src: local('Gotham Pro Light'), local('Gotham-Pro-Light'),
-      url('../../public/font/GothamPro-Light.woff2') format('woff2'),
-      url('../../public/font/GothamPro-Light.woff') format('woff'),
-      url('../../public/font/GothamPro-Light.ttf') format('truetype');
+  font-family: "Gotham Pro";
+  src: local("Gotham Pro Light"), local("Gotham-Pro-Light"),
+    url("../../public/font/GothamPro-Light.woff2") format("woff2"),
+    url("../../public/font/GothamPro-Light.woff") format("woff"),
+    url("../../public/font/GothamPro-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: light;
 }
 
 @font-face {
-  font-family: 'Gotham Pro';
-  src: local('Gotham Pro Medium'), local('Gotham-Pro-Medium'),
-      url('../../public/font/GothamPro-Medium.woff2') format('woff2'),
-      url('../../public/font/GothamPro-Medium.woff') format('woff'),
-      url('../../public/font/GothamPro-Medium.ttf') format('truetype');
+  font-family: "Gotham Pro";
+  src: local("Gotham Pro Medium"), local("Gotham-Pro-Medium"),
+    url("../../public/font/GothamPro-Medium.woff2") format("woff2"),
+    url("../../public/font/GothamPro-Medium.woff") format("woff"),
+    url("../../public/font/GothamPro-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: medium;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 15px;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  cursor: pointer;
+  background: #fff;
+  box-shadow: -405px 0 0 400px white;
+  border-radius: 50%;
+}
+
+@layer base {
+  .song:first-child,
+  .song:first-child > * {
+    @apply border-none;
+  }
+
+  .songs-list > * > div:not(:first-child) {
+    @apply border-t-2;
+  }
+
+  @media (min-width: 640px) {
+    .products > .product {
+      @apply flex;
+    }
+  }
+  @media (max-width: 640px) {
+    .products > .product:nth-child(3) {
+      @apply hidden;
+    }
+    .products > .product:nth-child(4) {
+      @apply hidden;
+    }
+  }
+}
+
+:root {
+  --orange-color: #ff5f15;
+}
+
+:root {
+  --orange-color: #ff5f15;
+  --border-size: 3px;
+  --border-angle: 0turn;
+}
+
+.border-animation {
+  background-image: conic-gradient(
+      from var(--border-angle),
+      var(--orange-color),
+      var(--orange-color) 50%,
+      var(--orange-color)
+    ),
+    conic-gradient(
+      from var(--border-angle),
+      transparent 20%,
+      var(--orange-color),
+      var(--orange-color)
+    );
+  background-size: calc(100% - (var(--border-size) * 2))
+      calc(100% - (var(--border-size) * 2)),
+    cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  animation: bg-spin 3s linear infinite;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+@supports (-moz-animation: normal) {
+  .border-animation {
+    background-image: linear-gradient(black, black) !important;
+  }
+  span {
+    position: fixed;
+    border-radius: 100vmax;
+    display: block !important;
+    z-index: 30;
+  }
+
+  .top {
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+
+    background: linear-gradient(
+      90deg,
+      transparent 50%,
+      var(--orange-color),
+      var(--orange-color)
+    );
+  }
+
+  .bottom {
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--orange-color),
+      var(--orange-color),
+      transparent 50%
+    );
+  }
+
+  .right {
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 30%,
+      var(--orange-color),
+      var(--orange-color)
+    );
+  }
+
+  .left {
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(
+      180deg,
+      var(--orange-color),
+      var(--orange-color),
+      transparent 70%
+    );
+  }
+
+  .top {
+    animation: animateTop 3s ease-in-out infinite;
+  }
+
+  .bottom {
+    animation: animateBottom 3s ease-in-out infinite;
+  }
+
+  .right {
+    animation: animateRight 3s ease-in-out infinite;
+  }
+
+  .left {
+    animation: animateLeft 3s ease-in-out infinite;
+  }
+
+  @keyframes animateTop {
+    25% {
+      width: 100%;
+      opacity: 1;
+    }
+
+    30%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes animateBottom {
+    0%,
+    50% {
+      opacity: 0;
+      width: 0;
+    }
+
+    75% {
+      opacity: 1;
+      width: 100%;
+    }
+
+    76%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes animateRight {
+    0%,
+    25% {
+      opacity: 0;
+      height: 0;
+    }
+
+    50% {
+      opacity: 1;
+      height: 100%;
+    }
+
+    55%,
+    100% {
+      height: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes animateLeft {
+    0%,
+    75% {
+      opacity: 0;
+      bottom: 0;
+      height: 0;
+    }
+
+    100% {
+      opacity: 1;
+      height: 100%;
+    }
+  }
 }

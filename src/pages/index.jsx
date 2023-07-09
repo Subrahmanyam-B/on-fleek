@@ -1,55 +1,82 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Hero from "/public/assets/hero.svg";
 import Categories from "@/components/Categories";
+import Hero from "@/components/Hero";
 import Testimonials from "@/components/Testimonials";
+import { client } from "@/utils/axios";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export default function Home({data}) {
+export default function Home({ categories, banner, count }) {
+  const [showCategories, setShowCategories] = useState(categories);
+  const observe = useRef(null);
+  const getMoreCategories = useCallback(async () => {
+    try {
+      if (showCategories.length >= count) return;
+      const { data } = await client.get(
+        `/items/section?sort=rank&fields=*,products.product_id.*,products.product_id.images.*&deep[products][_limit]=4&limit=1&offset=${showCategories.length}`
+      );
+      setShowCategories((prev) => [...prev, ...data.data]);
+    } catch (e) {
+      console.log(e.response.data);
+    }
+  }, [count, showCategories.length]);
+
+  const lastSection = useCallback(
+    (node) => {
+      if (!node) return;
+      if (observe.current) observe.current.disconnect();
+      observe.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          getMoreCategories();
+        }
+      });
+      observe.current.observe(node);
+    },
+    [getMoreCategories]
+  );
+
   return (
-    <main className="text-white px-7 lg:px-20 overflow-x-hidden">
-      <div className="relative text-white bg-black h-[21rem] lg:h-[40rem]">
-        <div className="flex justify-center absolute w-full bg-transparent">
-          <Image
-            src={Hero}
-            alt="hero"
-            className="h-[20rem] w-[15rem] lg:h-[40rem] lg:w-auto"
-          />
-          {/* <Testimonials/> */}
+    <main className="text-white  overflow-x-hidden h-full">
+      <Hero data={banner} />
+      <div className="px-5 lg:px-20">
+        <div className="mt-10">
+          {showCategories?.map((item, i) => (
+            <Categories
+              key={item.id}
+              data={item}
+              ref={i === showCategories.length - 1 ? lastSection : null}
+            />
+          ))}
         </div>
-        <div className="h-[20rem] lg:h-[40rem] flex flex-col justify-center items-center absolute w-full gap-2 lg:gap-6 ">
-          <div className="text-[1.25rem] font-bold tracking-widest lg:text-7xl">
-            Fashion Made Effortless
-          </div>
-          <div className="text-xs lg:text-xl font-light text-center leading-tight px-6 max-w-[50rem] text-[#ffffff80]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          </div>
-          <button className="uppercase bg-primary px-7 py-3 mt-3 lg:mt-6 lg:px-10 lg:py-5">
-            Shop Now
-          </button>
-        </div>
+        <Testimonials />
       </div>
-      <div>
-        <Categories />
-        <Categories />
-        <Categories />
-        <Categories />
-      </div>
-      <Testimonials />
     </main>
   );
 }
 
-export const getServersideProps = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/items/section?fields=*,products.product_id.*`
-  );
+export const getServerSideProps = async () => {
+  try {
+    const { data: categoriesData } = await client.get(
+      `/items/section?sort=rank&fields=*,products.product_id.*,products.product_id.images.*&deep[products][_limit]=4&limit=1&meta=total_count`
+    );
 
-  const data = await res.json();
+    const { data: bannerData } = await client.get(
+      "/items/banner?fields=*,song.*,song.artists.*,song.artists.artists_id.*,song.artists.artists_id.songs.*,song.artists.artists_id.songs.song_id.*,buy_now_product.*,buy_now_product.images.*"
+    );
 
-  return {
-    props: {
-      data: data,
-    },
-  };
+    return {
+      props: {
+        categories: categoriesData.data,
+        banner: bannerData.data,
+        count: categoriesData.meta.total_count,
+      },
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      props: {
+        categories: [],
+        banner: [],
+        count: 0,
+      },
+    };
+  }
 };
